@@ -1,0 +1,270 @@
+<html>
+<head>
+  <title>フォーム</title>
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" media="all" type="text/css" href="style.css" />
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.raty.js"></script>
+</head>
+<body>
+  <div class="container" style="margin-top:50px;">
+    <form>
+      <div class="form-group bg-setting">
+        <label for="">日本酒名称（面倒であれば空白でOK）</label>
+        <input type="text" class="form-control" id="" value="" placeholder="（例）風の森 秋津穂 純米 しぼり華" />
+      </div>
+      <div class="form-group bg-setting">
+        <label>総合評価<span style="color:red;">（必須）</span></label>
+        <div class="row">
+          <div class="col-sm">
+          	<div id="star-rating"></div>
+        	</div>
+        	<div class="col-sm">
+          	<input class="form-control" style="width: 120px;" placeholder="--" min="0.0" max="5.0" step="0.1" type="number" name="" id="review_rating_sogo" />
+        	</div>
+        </div>
+      </div>
+
+      <div class="form-group bg-setting">
+        <label>日本酒の写真<span style="color:red;">（必須）</span></label>
+  			<div class="row">
+  				<div class="col-sm">
+  					<label>
+  						<span class="btn btn-default">
+  				          <div style="border:1px solid #333;border-radius: 8px;padding: 6px;background-color:#fff;">日本酒の画像を選択/撮影</div>
+  				          <input style="display: none;" accept="image/jpeg,image/gif,image/png" required="required" type="file" name="review[review_image]" id="review_review_image" />
+				        </span>
+			    	</label>
+			    </div>
+			    <div class="col-sm">
+			    	<p style="font-weight: bold;">写真例(ラベルを大きくお願いします！)</p>
+			    </div>
+  			</div>
+  			<div class="row">
+  			  <div class="col-sm">
+  					<div class="preview"></div>
+  				</div>
+  				<div class="col-sm">
+  			    	<img class="otehon" src="./images/kamokinshu.jpg" alt="写真例" />
+  			  </div>
+  			</div>
+      </div>
+
+      <div class="form-group bg-setting">
+        <canvas id="canvas"></canvas>
+        <div class="row">
+          <div class="col-sm">
+            <label for="">味の濃淡</label>
+            <input class="form-control" style="width: 120px;" placeholder="--" min="-3" max="3" step="1" type="number" name="" id="review_rating_aji" />
+          </div>
+          <div class="col-sm">
+            <label for="">香りの高低</label>
+            <input class="form-control" style="width: 120px;" placeholder="--" min="-3" max="3" step="1" type="number" name="" id="review_rating_kaori" />
+          </div>
+        </div>
+      </div>
+      <div class="form-group bg-setting">
+        <label>その他特徴</label>
+    			<div class="checkbox-group">
+    			<input type="hidden" name="review[tag_ids][]" value="" />
+    				<label class="checkbox-inline" for="review_tag_ids_1"><input onclick="javascript:chgCheckbox(1);" type="checkbox" value="1" name="review[tag_ids][]" id="review_tag_ids_1" />辛口</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_2"><input onclick="javascript:chgCheckbox(2);" type="checkbox" value="2" name="review[tag_ids][]" id="review_tag_ids_2" />甘口</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_3"><input onclick="javascript:chgCheckbox(3);" type="checkbox" value="3" name="review[tag_ids][]" id="review_tag_ids_3" />酸味</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_4"><input onclick="javascript:chgCheckbox(4);" type="checkbox" value="4" name="review[tag_ids][]" id="review_tag_ids_4" />苦味</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_5"><input onclick="javascript:chgCheckbox(5);" type="checkbox" value="5" name="review[tag_ids][]" id="review_tag_ids_5" />渋味</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_6"><input onclick="javascript:chgCheckbox(6);" type="checkbox" value="6" name="review[tag_ids][]" id="review_tag_ids_6" />旨味</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_7"><input onclick="javascript:chgCheckbox(7);" type="checkbox" value="7" name="review[tag_ids][]" id="review_tag_ids_7" />フルーティー</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_8"><input onclick="javascript:chgCheckbox(8);" type="checkbox" value="8" name="review[tag_ids][]" id="review_tag_ids_8" />スモーキー</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_9"><input onclick="javascript:chgCheckbox(9);" type="checkbox" value="9" name="review[tag_ids][]" id="review_tag_ids_9" />軽快</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_10"><input onclick="javascript:chgCheckbox(10);" type="checkbox" value="10" name="review[tag_ids][]" id="review_tag_ids_10" />重厚</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_11"><input onclick="javascript:chgCheckbox(11);" type="checkbox" value="11" name="review[tag_ids][]" id="review_tag_ids_11" />とろみ</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_12"><input onclick="javascript:chgCheckbox(12);" type="checkbox" value="12" name="review[tag_ids][]" id="review_tag_ids_12" />さらさら</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_13"><input onclick="javascript:chgCheckbox(13);" type="checkbox" value="13" name="review[tag_ids][]" id="review_tag_ids_13" />炭酸</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_14"><input onclick="javascript:chgCheckbox(14);" type="checkbox" value="14" name="review[tag_ids][]" id="review_tag_ids_14" />冷酒に合う</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_15"><input onclick="javascript:chgCheckbox(15);" type="checkbox" value="15" name="review[tag_ids][]" id="review_tag_ids_15" />常温に合う</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_16"><input onclick="javascript:chgCheckbox(16);" type="checkbox" value="16" name="review[tag_ids][]" id="review_tag_ids_16" />ぬる燗に合う</label>
+
+    				<label class="checkbox-inline" for="review_tag_ids_17"><input onclick="javascript:chgCheckbox(17);" type="checkbox" value="17" name="review[tag_ids][]" id="review_tag_ids_17" />熱燗に合う</label>
+    			</div>
+      </div>
+      <div class="form-group bg-setting">
+        <label>コメント<span style="color:red;">（必須）</span>現在<span class="count">0</span>文字</label>
+			     <textarea class="form-control" rows="6" name="review[comment]" id="review_comment"></textarea>
+      </div>
+      <input type="submit" name="commit" value="送信" class="btn btn-primary" data-disable-with="送信" />
+    </form>
+  </div>
+  <script>
+  $(document).ready(function() {
+  	$('#star-rating').raty({
+  	    size: 48,
+  	    path: './images',
+  	    half: true,
+  	    round: { down: .4, full: .5, up: .99 },
+  	    targetScore: '#review_rating_sogo',
+  	    targetKeep: true
+  	});
+
+  	$("input[type=number]#review_rating_sogo").bind('keyup input change', function(){
+  	  $('#star-rating').raty('score',$(this).val());
+  	});
+  });
+
+  $(function(){
+//画像ファイルプレビュー表示
+	$('form').on('change', 'input[type="file"]', function(e) {
+	  var file = e.target.files[0],
+	      reader = new FileReader(),
+	      $preview = $(".preview");
+	      t = this;
+
+	  // 画像ファイル以外の場合は何もしない
+	  if(file.type.indexOf("image") < 0){
+	    return false;
+	  }
+
+	  reader.onload = (function(file) {
+	    return function(e) {
+	      $preview.empty();
+	      $preview.append($('<img>').attr({
+	                src: e.target.result,
+	                 class: "preview",
+	                 width: "180",
+	                 style: "border-radius: 6%;",
+	                title: file.name
+	            }));
+	    };
+	  })(file);
+
+	  reader.readAsDataURL(file);
+	});
+});
+
+
+  $(function() {
+      var canvas = document.getElementById('canvas');
+   	  var ctx = canvas.getContext('2d');
+      var x;
+      var y;
+
+      var data = { datasets: [{
+        xAxisID:'xAxis1',
+        yAxisID:'yAxis1',
+        pointRadius: 12,
+        backgroundColor: 'rgb(255, 3, 62)'
+        //data: [{x: 0.5, y: 0.5}]
+        }]
+      };
+
+      var chart = Chart.Scatter(ctx, {
+        data: data,
+        options: {
+          onClick: function(e) {
+            x = Math.round(chart.scales['xAxis1'].getValueForPixel(e.offsetX));
+            y = Math.round(chart.scales['yAxis1'].getValueForPixel(e.offsetY));
+
+            $("input[type=number]#review_rating_aji").val(x)
+            $("input[type=number]#review_rating_kaori").val(y)
+
+            data.datasets[0].data[0] = {x: x, y: y};
+            chart.update();
+          },
+          legend: {
+              display: false
+          },
+          title: {
+            display: true,
+            text: '香味特性'
+          },
+          scales: {
+            xAxes: [
+              {
+                id: 'xAxis1',
+                ticks: {
+                  beginAtZero: true,
+                  min: -3,
+                  max: 3,
+                  display: false
+                },
+                scaleLabel: { display: true, labelString: '香りが低い' },
+              },
+              {
+                id: 'xAxis2',
+                ticks: {
+                  beginAtZero: true,
+                  min: -3,
+                  max: 3,
+                  display: false
+                },
+                scaleLabel: { display: true, labelString: '香りが高い' },
+                position: 'top'
+              }
+            ],
+            yAxes: [
+              {
+                id: 'yAxis1',
+                ticks: {
+                  beginAtZero: true,
+                  min: -3,
+                  max: 3,
+                  display: false
+                },
+                scaleLabel: { display: true, labelString: '味が淡麗' },
+              },
+              {
+                id: 'yAxis2',
+                ticks: {
+                  beginAtZero: true,
+                  min: -3,
+                  max: 3,
+                  display: false
+                },
+                scaleLabel: { display: true, labelString: '味が濃厚' },
+                position: 'right'
+              }
+            ]
+          }
+        }
+      });
+  });
+
+  function chgCheckbox(id) {
+	node = document.getElementById("review_tag_ids_"+id)
+	if(node.checked) {
+		node.parentNode.style.backgroundColor = '#0000ff';
+		node.parentNode.style.color = '#fff';
+	} else {
+		node.parentNode.style.backgroundColor = 'transparent';
+		node.parentNode.style.color = '#333';
+	}
+}
+
+$(function(){
+    $('textarea').bind('keydown keyup keypress change',function(){
+        var thisValueLength = $(this).val().length;
+        $('.count').html(thisValueLength);
+    });
+});
+  </script>
+</body>
+</html>

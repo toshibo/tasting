@@ -1,0 +1,26 @@
+div.checkbox-group label.checkbox-inline {
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  margin: 4px 1px;
+  background: transparent;
+  color: #333;
+}
+div.checkbox-group label.checkbox-inline:hover {
+  background: #0000ff;
+  color: #fff;
+}
+div.checkbox-group input {
+  display: none;
+}
+
+.bg-setting {
+  background-color: #eee;
+  padding: 10px;
+}
+
+img.otehon {
+  width: 180px;
+  border-radius: 6%;
+}
